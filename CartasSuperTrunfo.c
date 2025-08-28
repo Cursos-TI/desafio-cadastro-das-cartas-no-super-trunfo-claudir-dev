@@ -1,22 +1,71 @@
 #include <stdio.h>
+#include <string.h>
 
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
-// Siga os comentários para implementar cada parte do desafio.
-//Teste larissa
+int nova_carta();
+
+typedef struct {
+    char estado[50];
+    char cidade[50];
+    float populacao;
+    float area;
+    float pib;
+    int turismo;
+} carta1;
 
 int main() {
-    // Sugestão: Defina variáveis separadas para cada atributo da cidade.
-    // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
-    
-    // Cadastro das Cartas:
-    // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
-    // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
-    
-    // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
+
+    carta1 cartas;
+
+    printf("--- Bem vindo ao Super Trunfo de Cidades ---!\n\n");
+
+    printf("Digite seu estado: ");
+    fgets(cartas.estado, sizeof(cartas.estado), stdin);
+
+    printf("Digite sua cidade: ");
+    fgets(cartas.cidade, sizeof(cartas.cidade), stdin);
+
+    printf("digite a população da sua ciade: ");
+    scanf("%f", &cartas.populacao);
+
+    printf("Digite a area da sua cidade: ");
+    scanf("%f", &cartas.area);
+
+    printf("Digite o PIB da sua cidade: ");
+    scanf("%f", &cartas.pib);
+
+    printf("Quantos pontos turisticos tem na sua cidade: ");
+    scanf("%d", &cartas.turismo);
+
+    printf("\n--- Sua carta foi criadda com sucesso!  ---\n");
+
+    printf("Estado: %s", cartas.estado);
+    printf("Cidade: %s", cartas.cidade);
+    printf("População: %f\n", cartas.populacao);
+    printf("Area: %.2fKM²\n", cartas.area);
+    printf("PIB: %.2fR$\n", cartas.pib);
+    printf("Pontos Turisticos: %d\n\n", cartas.turismo);
+
+    nova_carta(); 
 
     return 0;
+
 }
+
+int nova_carta() {
+    
+    char reposta [1];
+
+    printf("Deseja criar uma nova carta? (s/n): ");
+    scanf("%s", reposta);
+
+    if (reposta[0] == 's' || reposta[0] == 'S') {
+        main();
+    } else {
+        printf("Obrigado por jogar o super trunfo de cidades!");
+    }
+
+    return 0;
+
+}
+
+
