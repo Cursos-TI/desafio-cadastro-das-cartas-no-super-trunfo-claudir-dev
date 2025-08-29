@@ -1,71 +1,86 @@
-#include <stdio.h>
-#include <string.h>
+#include <stdio.h> 
 
-int nova_carta();
+int calculo (float populacao, float area, float PIB);
+int capturaDados(void);
+int repetir(void);
 
-typedef struct {
+int capturaDados(void) {
     char estado[50];
-    char cidade[50];
+    char cidade [50];
     float populacao;
     float area;
-    float pib;
+    float PIB;
     int turismo;
-} carta1;
-
-int main() {
-
-    carta1 cartas;
 
     printf("--- Bem vindo ao Super Trunfo de Cidades ---!\n\n");
 
     printf("Digite seu estado: ");
-    fgets(cartas.estado, sizeof(cartas.estado), stdin);
+    scanf("%s", &estado);
 
     printf("Digite sua cidade: ");
-    fgets(cartas.cidade, sizeof(cartas.cidade), stdin);
+    scanf("%s", &cidade);
 
-    printf("digite a população da sua ciade: ");
-    scanf("%f", &cartas.populacao);
+    printf("Digite a população da sua cidade: ");
+    scanf("%f", &populacao);
 
-    printf("Digite a area da sua cidade: ");
-    scanf("%f", &cartas.area);
+    printf("Digite a area da dua cidade: ");
+    scanf("%f", &area);
 
-    printf("Digite o PIB da sua cidade: ");
-    scanf("%f", &cartas.pib);
+    printf("Digite o pip da dua cidade: ");
+    scanf("%f", &PIB);
 
-    printf("Quantos pontos turisticos tem na sua cidade: ");
-    scanf("%d", &cartas.turismo);
+    printf("Quantos pontos turísticos existem na sua cidade?: ");
+    scanf("%d", &turismo);
+
 
     printf("\n--- Sua carta foi criadda com sucesso!  ---\n");
 
-    printf("Estado: %s", cartas.estado);
-    printf("Cidade: %s", cartas.cidade);
-    printf("População: %f\n", cartas.populacao);
-    printf("Area: %.2fKM²\n", cartas.area);
-    printf("PIB: %.2fR$\n", cartas.pib);
-    printf("Pontos Turisticos: %d\n\n", cartas.turismo);
-
-    nova_carta(); 
+    printf("Estado: %s\n",estado);
+    printf("Cidade: %s\n", cidade);
+    printf("População: %f\n", populacao);
+    printf("Area: %.2fKM²\n", area);
+    printf("PIB: %.2fR$\n", PIB);
+    printf("Pontos Turisticos: %d\n", turismo);
+    calculo(populacao, area, PIB);
+    repetir();
 
     return 0;
 
 }
 
-int nova_carta() {
+int calculo(float populacao, float area, float PIB) {
+    float densidade;
+    float pib_per_capita;
+
+    densidade = (float)populacao / area;
+    pib_per_capita = (float) PIB / populacao;
+
+    printf("A densidade populacional da sua cidade é de %.2f habitantes por KM²\n", densidade);
+    printf("O PIB per capita da sua cidade é de %.2f R$\n\n", pib_per_capita);
+
+    return 0;
+
     
-    char reposta [1];
+}
+
+int repetir(void) {
+    char reposta[1];
 
     printf("Deseja criar uma nova carta? (s/n): ");
     scanf("%s", reposta);
 
     if (reposta[0] == 's' || reposta[0] == 'S') {
-        main();
+        capturaDados();
     } else {
-        printf("Obrigado por jogar o super trunfo de cidades!");
+        printf("Obrigado por jogar!");
+        
     }
-
     return 0;
-
+    
 }
 
+int main () {
+    capturaDados();
+    return 0;
+}
 
